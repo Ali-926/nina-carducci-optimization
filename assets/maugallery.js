@@ -115,72 +115,40 @@
       $(`#${lightboxId}`).modal("toggle");
     },
     prevImage() {
-      let activeImage = null;
-      $("img.gallery-item").each(function () {
-        if ($(this).attr("src") === $(".lightboxImage").attr("src")) {
-          activeImage = $(this);
-        }
-      });
-      let activeTag = $(".tags-bar span.active-tag").data("images-toggle");
       let imagesCollection = [];
-      if (activeTag === "all") {
-        $(".item-column").each(function () {
-          if ($(this).children("img").length) {
-            imagesCollection.push($(this).children("img"));
-          }
-        });
-      } else {
-        $(".item-column").each(function () {
-          if ($(this).children("img").data("gallery-tag") === activeTag) {
-            imagesCollection.push($(this).children("img"));
-          }
-        });
-      }
-      let index = 0,
-        next = null;
+      let activeTag = $(".tags-bar span.active-tag").data("images-toggle");
 
-      $(imagesCollection).each(function (i) {
-        if ($(activeImage).attr("src") === $(this).attr("src")) {
-          index = i;
+      $(".item-column img").each(function () {
+        if (activeTag === "all" || $(this).data("gallery-tag") === activeTag) {
+          imagesCollection.push($(this));
         }
       });
-      next =
-        imagesCollection[index] ||
-        imagesCollection[imagesCollection.length - 1];
-      $(".lightboxImage").attr("src", $(next).attr("src"));
+
+      let currentSrc = $(".lightboxImage").attr("src");
+      let index = imagesCollection.findIndex(
+        (img) => img.attr("src") === currentSrc
+      );
+
+      let prevIndex = index > 0 ? index - 1 : imagesCollection.length - 1;
+      $(".lightboxImage").attr("src", imagesCollection[prevIndex].attr("src"));
     },
     nextImage() {
-      let activeImage = null;
-      $("img.gallery-item").each(function () {
-        if ($(this).attr("src") === $(".lightboxImage").attr("src")) {
-          activeImage = $(this);
-        }
-      });
-      let activeTag = $(".tags-bar span.active-tag").data("images-toggle");
       let imagesCollection = [];
-      if (activeTag === "all") {
-        $(".item-column").each(function () {
-          if ($(this).children("img").length) {
-            imagesCollection.push($(this).children("img"));
-          }
-        });
-      } else {
-        $(".item-column").each(function () {
-          if ($(this).children("img").data("gallery-tag") === activeTag) {
-            imagesCollection.push($(this).children("img"));
-          }
-        });
-      }
-      let index = 0,
-        next = null;
+      let activeTag = $(".tags-bar span.active-tag").data("images-toggle");
 
-      $(imagesCollection).each(function (i) {
-        if ($(activeImage).attr("src") === $(this).attr("src")) {
-          index = i;
+      $(".item-column img").each(function () {
+        if (activeTag === "all" || $(this).data("gallery-tag") === activeTag) {
+          imagesCollection.push($(this));
         }
       });
-      next = imagesCollection[index] || imagesCollection[0];
-      $(".lightboxImage").attr("src", $(next).attr("src"));
+
+      let currentSrc = $(".lightboxImage").attr("src");
+      let index = imagesCollection.findIndex(
+        (img) => img.attr("src") === currentSrc
+      );
+
+      let nextIndex = index < imagesCollection.length - 1 ? index + 1 : 0;
+      $(".lightboxImage").attr("src", imagesCollection[nextIndex].attr("src"));
     },
     createLightBox(gallery, lightboxId, navigation) {
       gallery.append(`<div class="modal fade" id="${
@@ -227,15 +195,14 @@
         return;
       }
       $(".active-tag").removeClass("active active-tag");
-      $(this).addClass("active-tag");
+      $(this).addClass("active active-tag");
 
       var tag = $(this).data("images-toggle");
 
       $(".gallery-item").each(function () {
         $(this).parents(".item-column").hide();
-        if (tag === "all") {
-          $(this).parents(".item-column").show(300);
-        } else if ($(this).data("gallery-tag") === tag) {
+
+        if (tag === "all" || $(this).data("gallery-tag") === tag) {
           $(this).parents(".item-column").show(300);
         }
       });
