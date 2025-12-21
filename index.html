@@ -70,14 +70,15 @@
       href="https://fonts.googleapis.com/css2?family=Inter&family=Spectral:ital,wght@0,400;1,300;1,400;1,800&display=swap"
       rel="stylesheet"
     />
-    <script src="./assets/bootstrap/bootstrap.bundle.js"></script>
+    <script src="./assets/bootstrap/bootstrap.bundle.js" defer></script>
     <script
       src="https://code.jquery.com/jquery-3.4.1.min.js"
       integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
       crossorigin="anonymous"
+      defer
     ></script>
-    <script src="./assets/maugallery.js"></script>
-    <script src="./assets/scripts.js"></script>
+    <script src="./assets/maugallery.js" defer></script>
+    <script src="./assets/scripts.js" defer></script>
   </head>
   <body>
     <h1 class="visually-hidden">
@@ -183,6 +184,7 @@
           <img
             src="./assets/images/nina.webp"
             alt="Portrait de Nina Carducci"
+            loading="lazy"
           />
         </div>
         <div id="about-me">
@@ -207,54 +209,63 @@
               class="gallery-item"
               src="./assets/images/gallery/concerts/aaron-paul-wnX-fXzB6Cw-unsplash.webp"
               alt="Photographie de concert sur scène"
+              loading="lazy"
             />
             <img
               data-gallery-tag="Entreprises"
               class="gallery-item"
               src="./assets/images/gallery/entreprise/ali-morshedlou-WMD64tMfc4k-unsplash.webp"
               alt="Portrait professionnel en entreprise"
+              loading="lazy"
             />
             <img
               data-gallery-tag="Entreprises"
               class="gallery-item"
               src="./assets/images/gallery/entreprise/jason-goodman-tHO1_OuKbg0-unsplash.webp"
               alt="Scène de travail en entreprise"
+              loading="lazy"
             />
             <img
               data-gallery-tag="Mariages"
               class="gallery-item"
               src="./assets/images/gallery/mariage/hannah-busing-RvF2R_qMpRk-unsplash.webp"
               alt="Photographie de mariage en extérieur"
+              loading="lazy"
             />
             <img
               data-gallery-tag="Portrait"
               class="gallery-item"
               src="./assets/images/gallery/portraits/ade-tunji-rVkhWWZFAtQ-unsplash.webp"
               alt="Portrait artistique en lumière naturelle"
+              loading="lazy"
             />
             <img
               data-gallery-tag="Mariages"
               class="gallery-item"
               src="./assets/images/gallery/mariage/jakob-owens-SiniLJkXhMc-unsplash.webp"
               alt="Couple de mariés en séance photo"
+              loading="lazy"
             />
             <img
               data-gallery-tag="Portrait"
               class="gallery-item"
               src="./assets/images/gallery/portraits/nino-van-prattenburg--443cl1uR_8-unsplash.webp"
               alt="Portrait en extérieur"
+              loading="lazy"
             />
             <img
               data-gallery-tag="Concert"
               class="gallery-item"
               src="./assets/images/gallery/concerts/austin-neill-hgO1wFPXl3I-unsplash.webp"
               alt="Concert en live avec éclairage scénique"
+              loading="lazy"
             />
             <img
               data-gallery-tag="Entreprises"
               class="gallery-item"
               src="./assets/images/gallery/entreprise/mateus-campos-felipe-Fsgzm8N0hIY-unsplash.webp"
               alt="Photographie en entreprise"
+              loading="lazy"
             />
           </div>
         </div>
@@ -315,7 +326,11 @@
             </form>
           </div>
           <div class="picture right">
-            <img src="./assets/images/camera.webp" alt="Appareil photo" />
+            <img
+              src="./assets/images/camera.webp"
+              alt="Appareil photo"
+              loading="lazy"
+            />
           </div>
         </div>
       </section>
