@@ -52,11 +52,8 @@
     $(".gallery-item").on("click", function () {
       if (options.lightBox && $(this).prop("tagName") === "IMG") {
         $.fn.mauGallery.methods.openLightBox($(this), options.lightboxId);
-      } else {
-        return;
       }
     });
-
     $(".gallery").on("click", ".nav-link", $.fn.mauGallery.methods.filterByTag);
     $(".gallery").on("click", ".mg-prev", () =>
       $.fn.mauGallery.methods.prevImage(options.lightboxId)
@@ -64,6 +61,23 @@
     $(".gallery").on("click", ".mg-next", () =>
       $.fn.mauGallery.methods.nextImage(options.lightboxId)
     );
+
+    $(document).on("keydown", function (e) {
+      const modal = document.getElementById(options.lightboxId);
+      if (!modal || !modal.classList.contains("show")) return;
+
+      if (e.key === "ArrowLeft") {
+        $.fn.mauGallery.methods.prevImage(options.lightboxId);
+      }
+
+      if (e.key === "ArrowRight") {
+        $.fn.mauGallery.methods.nextImage(options.lightboxId);
+      }
+
+      if (e.key === "Escape") {
+        bootstrap.Modal.getInstance(modal)?.hide();
+      }
+    });
   };
   $.fn.mauGallery.methods = {
     createRowWrapper(element) {
