@@ -214,10 +214,12 @@
       var tag = $(this).data("images-toggle");
 
       $(".gallery-item").each(function () {
-        $(this).parents(".item-column").hide();
+        const $column = $(this).parents(".item-column");
+
+        $column.addClass("d-none");
 
         if (tag === "all" || $(this).data("gallery-tag") === tag) {
-          $(this).parents(".item-column").show(300);
+          $column.removeClass("d-none");
         }
       });
     },
